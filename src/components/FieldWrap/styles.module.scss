@@ -1,0 +1,17 @@
+@use '../../scss/forms' as f;
+
+.fieldWrap {
+  @extend %input-group;
+}
+
+.error {
+  @extend %error;
+}
+
+.label {
+  @extend %label;
+}
+
+.message {
+  @extend %error-message;
+}

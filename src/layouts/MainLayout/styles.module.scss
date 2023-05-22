@@ -1,0 +1,28 @@
+@use '../../scss/placeholders';
+@use '../../scss/variables' as v;
+@use '../../scss/include-media' as *;
+
+.main {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+}
+
+.footer {
+  background-color: v.$accent-2;
+
+  &__row {
+    @extend %row;
+
+    @include media('>=xxs') {
+      justify-content: space-between;
+      padding-top: 2.5rem;
+      padding-bottom: 2.5rem;
+    }
+
+    @include media('>=#{v.$mobile-menu-breakpoint}') {
+      align-items: center;
+    }
+
+  }
+}

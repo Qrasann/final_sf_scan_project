@@ -1,25 +1,23 @@
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from 'react';
+import { RouterProvider } from 'react-router-dom';
+import { useDispatch } from 'react-redux';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+import router from './router/router';
+import { isAccessTokenExpire } from './utils/helpers';
+import { useAuth } from './hooks/useAuth';
+import { logout } from './redux/slices/authSlice';
+
+const App = () => {
+const { expire } = useAuth();
+const dispatch = useDispatch();
+
+useEffect(() => {
+if (isAccessTokenExpire(expire)) {
+dispatch(logout());
 }
+}, [expire, dispatch]);
+
+return <RouterProvider router={router} />;
+};
 
 export default App;
